@@ -3,8 +3,8 @@ include mixins/video
 
 block content 
     ul 
-        each potato in videos 
-            +video(potato)
+        each video in videos 
+            +video(video)
         else 
             li Sorry nothing video
     input(placeholder="Whats your name?")
