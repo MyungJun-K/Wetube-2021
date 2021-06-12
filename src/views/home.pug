@@ -1,0 +1,11 @@
+extends base.pug
+include mixins/video
+
+block content 
+    ul 
+        each potato in videos 
+            +video(potato)
+        else 
+            li Sorry nothing video
+    input(placeholder="Whats your name?")
+    button send
