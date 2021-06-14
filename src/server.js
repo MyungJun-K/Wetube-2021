@@ -27,7 +27,6 @@ app.use(
 
 app.use((req, res, next) => {
   req.sessionStore.all((error, sessions) => {
-    console.log(sessions);
     next();
   });
 }); // session에 있는 정보를 모두 console.log 한다
