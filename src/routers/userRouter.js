@@ -1,19 +1,20 @@
 import express from "express";
 import {
-  edit,
-  remove,
+  postEdit,
+  getEdit,
   logout,
   see,
   startGihubLogin,
   finishGihubLogin,
 } from "../controllers/userController";
+import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
 
 const userRouter = express.Router();
 
-userRouter.get("/logout", logout);
-userRouter.get("/edit", edit);
-userRouter.get("/github/start", startGihubLogin);
-userRouter.get("/github/finish", finishGihubLogin);
-userRouter.get("/:id(\\d+)", see);
+userRouter.route("/logout").all(protectorMiddleware).get(logout);
+userRouter.route("/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
+userRouter.route("/github/start").get(publicOnlyMiddleware, startGihubLogin);
+userRouter.route("/github/finish").get(publicOnlyMiddleware, finishGihubLogin);
+userRouter.route("/:id").get(see);
 
 export default userRouter;
