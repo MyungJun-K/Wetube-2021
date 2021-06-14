@@ -6,6 +6,8 @@ import {
   see,
   startGihubLogin,
   finishGihubLogin,
+  getChangePassword,
+  postChangePassword,
 } from "../controllers/userController";
 import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
 
@@ -15,6 +17,10 @@ userRouter.route("/logout").all(protectorMiddleware).get(logout);
 userRouter.route("/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
 userRouter.route("/github/start").get(publicOnlyMiddleware, startGihubLogin);
 userRouter.route("/github/finish").get(publicOnlyMiddleware, finishGihubLogin);
+userRouter
+  .route("/change-password")
+  .get(getChangePassword)
+  .post(postChangePassword);
 userRouter.route("/:id").get(see);
 
 export default userRouter;
