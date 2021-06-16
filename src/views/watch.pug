@@ -8,7 +8,7 @@ block content
     div 
         small Uploaded by 
             a(href=`/users/${video.owner.id}`) #{video.owner.name}
-    if String(video.owner._id) === loggedInUser._id
+    if String(video.owner._id) === String(loggedInUser._id)
         a(href=`${video.id}/edit`) Edit Video &rarr;
         br
         a(href=`${video.id}/delete`) Delete Video &rarr;
