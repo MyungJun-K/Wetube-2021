@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video";
 import bcrypt from "bcrypt"; // db 에 기록된 hash값와 동일한지 비교
 import fetch from "node-fetch";
 
@@ -205,8 +206,11 @@ export const see = async (req, res) => {
   if (!user) {
     return res.status(400).render("404", { pageTitle: "Usesr not found" });
   }
+  const videos = await Video.find({ owner: user._id });
+  console.log(videos);
   return res.render("users/profile", {
     pageTitle: user.name,
     user,
+    videos,
   });
 };
