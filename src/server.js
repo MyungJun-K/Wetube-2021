@@ -33,6 +33,7 @@ app.use(
 
 app.use(localMiddleware); // 전역변수 사용하는 미들웨어
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
