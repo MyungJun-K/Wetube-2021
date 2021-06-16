@@ -32,6 +32,7 @@ app.use((req, res, next) => {
 }); // session에 있는 정보를 모두 console.log 한다
 
 app.use(localMiddleware); // 전역변수 사용하는 미들웨어
+app.use("/uploads", express.static("uploads"));
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);

@@ -9,12 +9,20 @@ import {
   getChangePassword,
   postChangePassword,
 } from "../controllers/userController";
-import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
+import {
+  protectorMiddleware,
+  publicOnlyMiddleware,
+  uploadFiles,
+} from "../middlewares";
 
 const userRouter = express.Router();
 
 userRouter.route("/logout").all(protectorMiddleware).get(logout);
-userRouter.route("/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
+userRouter
+  .route("/edit")
+  .all(protectorMiddleware)
+  .get(getEdit)
+  .post(uploadFiles.single("avatar"), postEdit);
 userRouter.route("/github/start").get(publicOnlyMiddleware, startGihubLogin);
 userRouter.route("/github/finish").get(publicOnlyMiddleware, finishGihubLogin);
 userRouter
