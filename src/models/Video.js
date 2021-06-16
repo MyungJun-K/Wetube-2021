@@ -19,5 +19,5 @@ videoSchema.static("formatHashtags", function (hashtags) {
     .map((word) => (word.startsWith("#") ? word : `#${word}`));
 }); // 개발자가 직접 함수 생성
 
-const Video = mongoose.model("video", videoSchema); // mongodb에 연결
+const Video = mongoose.model("Video", videoSchema); // mongodb에 연결
 export default Video;
