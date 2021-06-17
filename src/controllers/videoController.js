@@ -3,7 +3,9 @@ import User from "../models/User";
 
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({}).sort({ createdAt: "desc" }); // DB에 있는 모든 video를 찾고 videos에 업로드 순으로 배열로 저장
+    const videos = await Video.find({})
+      .sort({ createdAt: "desc" })
+      .populate("owner"); // DB에 있는 모든 video를 찾고 videos에 업로드 순으로 배열로 저장
     return res.render("home", { pageTitle: "Home", videos }); // home.pug에 변수 pageTitle 과 videos를 가지고 render
   } catch {
     return res.render("error"); // 예상하지 못한 에러가 발생할 경우를 대비
@@ -110,7 +112,7 @@ export const search = async (req, res) => {
       title: {
         $regex: new RegExp(keyword, "i"), // keyword가 들어간 title
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { pageTitle: "Search", videos });
 };
