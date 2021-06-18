@@ -6,6 +6,7 @@ import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter"; // user와 관련된 router
 import videoRouter from "./routers/videoRouter"; // video와 관련된 router
 import { localMiddleware } from "./middlewares"; // session의 전역변수 모음 파일
+import apiRouter from "./routers/apiRouter";
 
 const app = express(); // express를 app 으로 치환
 const logger = morgan("dev"); // 어떤 상태를 받아오고 어떤 상태인지 자세히 알려주는 morgan
@@ -37,5 +38,6 @@ app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
+app.use("/api", apiRouter);
 
 export default app;

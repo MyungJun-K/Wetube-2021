@@ -123,6 +123,13 @@ const handleSpacebar = (event) => {
   playBtnIconChange();
 };
 
+const handleEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, {
+    method: "POST",
+  });
+};
+
 document.addEventListener("keyup", handleSpacebar);
 fullScreenBtn.addEventListener("click", handleFullscreen);
 muteBtn.addEventListener("click", handleMute);
@@ -131,6 +138,7 @@ timeLine.addEventListener("input", handleTimelineChange);
 video.addEventListener("loadeddata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("click", handleMousedown);
+video.addEventListener("ended", handleEnded);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 volumeRange.addEventListener("input", handleVolumeChange);
