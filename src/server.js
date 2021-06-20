@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan"; // GET / 304 63.205 ms - - 와 같은 요청과 반응 expess middleware
 import session from "express-session"; // session을 만들어준다.
+import flash from "express-flash";
 import MongoStore from "connect-mongo"; // 생성한 session을 DB에 연결해준다.
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter"; // user와 관련된 router
@@ -32,6 +33,7 @@ app.use(
 //   });
 // }); // session에 있는 정보를 모두 console.log 한다
 
+app.use(flash());
 app.use(localMiddleware); // 전역변수 사용하는 미들웨어
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("assets"));
