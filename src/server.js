@@ -17,6 +17,7 @@ app.set("views", process.cwd() + "/src/views"); // pug 파일의 위치 초기�
 
 app.use(logger); // middleware 사용
 app.use(express.urlencoded({ extended: true })); // form에 입력한 데이터를 post하는데 express가 이해할 수 있도록 해준다
+app.use(express.json());
 
 app.use(
   session({
